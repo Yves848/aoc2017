@@ -2,13 +2,18 @@
 using System.Runtime.InteropServices;
 
 string home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-List<string> file = args.Length > 0 ? File.ReadAllLines(args[0]).ToList() : File.ReadAllLines($"{home}/git/aoc2017/01/test.txt").ToList();
+string file = args.Length > 0 ? File.ReadAllText(args[0]) : File.ReadAllText($"{home}/git/aoc2017/01/test.txt");
 var lf = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "\r\n" : "\n";
 
 
 void part1()
 {
   int ans = 0;
+  int i = 0;
+  while (i < file.Length) {
+    if (file[i] == (i < file.Length -2 ? file[i+1] : file[0])) ans += Convert.ToInt32(file[i].ToString());
+    i++;
+  }
   Console.WriteLine($"Part 1 - Answer : {ans}");
 }
 
