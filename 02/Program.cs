@@ -6,9 +6,19 @@ List<string> file = args.Length > 0 ? File.ReadAllLines(args[0]).ToList() : File
 var lf = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "\r\n" : "\n";
 
 
+
 void part1()
 {
   int ans = 0;
+  file.ForEach(line =>
+  {
+    List<int> row = [];
+    line.Split("\t", StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(num =>
+    {
+      row.Add(int.Parse(num));
+    });
+    ans += row.Max()-row.Min();
+  });
   Console.WriteLine($"Part 1 - Answer : {ans}");
 }
 
