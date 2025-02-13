@@ -17,7 +17,7 @@ void part1()
     {
       row.Add(int.Parse(num));
     });
-    ans += row.Max()-row.Min();
+    ans += row.Max() - row.Min();
   });
   Console.WriteLine($"Part 1 - Answer : {ans}");
 }
@@ -25,6 +25,32 @@ void part1()
 void part2()
 {
   int ans = 0;
+  file.ForEach(line =>
+  {
+    List<int> row = [];
+    line.Split("\t", StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(num =>
+    {
+      row.Add(int.Parse(num));
+    });
+
+    int i = 0;
+    row.Sort((a, b) => b.CompareTo(a));
+    while (i < row.Count)
+    {
+      int j = row.Count - 1;
+      while (row[i] > row[j] && j > 0)
+      {
+        if (row[i] % row[j] == 0)
+        {
+          ans += row[i] / row[j];
+          i = row.Count;
+          break;
+        }
+        j--;
+      }
+      i++;
+    }
+  });
   Console.WriteLine($"Part 2 - Answer : {ans}");
 }
 
