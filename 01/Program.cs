@@ -20,6 +20,15 @@ void part1()
 void part2()
 {
   int ans = 0;
+  int i = 0;
+  int i2 = 0;
+  int w = file.Length / 2;
+  while (i < file.Length) {
+    i2 = i + w;
+    if (i2 > file.Length -1) i2 = (i+w)%file.Length;
+    if (file[i] == file[i2]) ans += Convert.ToInt32(file[i].ToString());
+    i++;
+  }
   Console.WriteLine($"Part 2 - Answer : {ans}");
 }
 
