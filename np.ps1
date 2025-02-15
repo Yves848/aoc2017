@@ -7,7 +7,8 @@ $domain = ".adventofcode.com"
 $p = [int]$project
 
 
-mcd $project
+mkdir $project
+cd $project
 dotnet new console
 dotnet new sln
 dotnet sln add $project".csproj"
