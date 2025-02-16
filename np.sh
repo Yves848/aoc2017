@@ -25,11 +25,11 @@ else
     dotnet new console
     dotnet new sln
     dotnet sln add "$1.csproj"
-    cp ../Program.cs
+    cp ../Program.cs .
     touch test.txt
     p=$(($1))
     echo " p : $p"
     curl -l "https://adventofcode.com/2017/day/$p/input" --cookie "session=$API_KEY" -o data.txt
-    go_to_dir $1
+    # go_to_dir $1
 fi
 
